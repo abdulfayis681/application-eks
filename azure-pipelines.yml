@@ -29,8 +29,6 @@ stages:
         command: 'Build an image'
         dockerFile: '$(Build.SourcesDirectory)/Dockerfile'
         imageName: '$(ImageName)'
-        useDefaultContext: false
-        buildContext: 'swiggy-app'
       displayName: 'Build the Docker image'
 
     - task: Docker@1      
