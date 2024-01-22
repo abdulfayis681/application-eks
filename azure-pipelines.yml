@@ -67,7 +67,6 @@ stages:
       inputs:
         connectionType: 'Kubernetes Service Connection'
         kubernetesServiceConnection: 'kube-f4yiee'
-        namespace: 'swiggy'
         command: 'upgrade'
         chartType: 'FilePath'
         chartPath: 'swiggy-app'
