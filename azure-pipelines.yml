@@ -15,6 +15,7 @@ variables:
 stages:
 - stage: Build
   displayName: Build image
+
   jobs:
   - job: Build
     displayName: Build
@@ -29,6 +30,10 @@ stages:
         repository: 'swiggy-app'
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile'
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: 'whoami'
     - task: Docker@2
       displayName: Build an image
       inputs:
