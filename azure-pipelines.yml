@@ -27,7 +27,7 @@ stages:
         containerregistrytype: 'Container Registry'
         dockerRegistryEndpoint: 'docker-hub'
         command: 'Build an image'
-        dockerFile: '**/Dockerfile'
+        dockerFile: '$(Build.SourcesDirectory)/Dockerfile'
         imageName: '$(ImageName)'
         useDefaultContext: false
         buildContext: 'swiggy-app'
