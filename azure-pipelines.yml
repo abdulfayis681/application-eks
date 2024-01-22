@@ -54,4 +54,31 @@ stages:
         targetType: 'inline'
         script: 'docker rmi -f $(docker images -q)'
       displayName: 'Cleaning Docker images'
+      
+- stage: Deploy
+  displayName: Helm Deployement
+  jobs:  
+  - job: Deploy
+    displayName: Helm deployement
+    pool:
+      f4yiee
+    steps:
+    - task: HelmDeploy@0
+      inputs:
+        connectionType: 'Kubernetes Service Connection'
+        kubernetesServiceConnection: 'kube-f4yiee'
+        namespace: 'swiggy'
+        command: 'upgrade'
+        chartType: 'FilePath'
+        chartPath: 'swiggy-app'
+        releaseName: 'swiggy'
+        overrideValues: '$(Build.BuildId)'
+        valueFile: 'image.tag'
+        resetValues: true'
+
+
+
+
+
+
 
