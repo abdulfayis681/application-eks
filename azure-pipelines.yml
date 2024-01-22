@@ -24,12 +24,12 @@ stages:
       # vmImage: ubuntu-latest
     steps:
     
-    # - task: Docker@2
-    #   inputs:
-    #     containerRegistry: 'docker-hub'
-    #     repository: 'swiggy-app'
-    #     command: 'buildAndPush'
-    #     Dockerfile: '**/Dockerfile'
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'docker-hub'
+        repository: 'swiggy-app'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
     - task: Bash@3
       inputs:
         targetType: 'inline'
