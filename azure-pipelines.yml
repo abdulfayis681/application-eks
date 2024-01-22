@@ -19,6 +19,8 @@ stages:
   jobs:  
   - job: Build
     displayName: Build and push Docker image
+    pool:
+      f4yiee
     steps:
     - task: Docker@1      
       inputs:
