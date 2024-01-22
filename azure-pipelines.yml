@@ -11,33 +11,31 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  ImageName: 'abdulfayis/swiggy-app:$(Build.BuildId)'  
 
 stages:
 - stage: Build
   displayName: Build image
-
-  jobs:
+  jobs:  
   - job: Build
-    displayName: Build
-    pool:
-      f4yiee
-      # vmImage: ubuntu-latest
+    displayName: Build and push Docker image
     steps:
-    
-    - task: Docker@2
+    - task: Docker@1      
       inputs:
-        containerRegistry: 'docker-hub'
-        repository: 'swiggy-app'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
-    - task: Bash@3
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'docker-hub'
+        command: 'Build an image'
+        dockerFile: '**/Dockerfile'
+        imageName: '$(ImageName)'
+        useDefaultContext: false
+        buildContext: 'swiggy-app'
+      displayName: 'Build the Docker image'
+
+    - task: Docker@1      
       inputs:
-        targetType: 'inline'
-        script: 'whoami'
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'docker-hub'
+        command: 'Push an image'
+        imageName: '$(ImageName)'
+      condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+      displayName: 'Push the Docker image to Dockerhub'
