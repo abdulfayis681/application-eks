@@ -11,6 +11,10 @@ resources:
 - repo: self
 
 variables:
+  containerRegistry: 'abdulfayis'
+  imageRepository: 'swiggy-app'
+  chartpath: 'swiggy-app'
+  releasename: 'swiggy'
   tag: '$(Build.BuildId)'
   ImageName: 'abdulfayis/swiggy-app:$(Build.BuildId)'  
 
@@ -67,13 +71,23 @@ stages:
       inputs:
         connectionType: 'Kubernetes Service Connection'
         kubernetesServiceConnection: 'kube-f4yiee'
+        # command: 'upgrade'
+        # chartType: 'FilePath'
+        # chartPath: 'swiggy-app'
+        # releaseName: 'swiggy'
+        # overrideValues: '$(Build.BuildId)'
+        # valueFile: 'swiggy-app/values.yaml'
+        # resetValues: true'
         command: 'upgrade'
         chartType: 'FilePath'
-        chartPath: 'swiggy-app'
-        releaseName: 'swiggy'
-        overrideValues: '$(Build.BuildId)'
-        valueFile: 'swiggy-app/values.yaml'
-        resetValues: true'
+        chartPath: $(chartpath)
+        releaseName: $(releasename)
+        recreate: true
+        waitForExecution: false'
+        overrideValues: |
+             image.repository=$(containerRegistry)/$(imageRepository)
+             image.tag=$(tag)
+
 
 
 
