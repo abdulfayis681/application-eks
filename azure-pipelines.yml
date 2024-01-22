@@ -72,7 +72,7 @@ stages:
         chartPath: 'swiggy-app'
         releaseName: 'swiggy'
         overrideValues: '$(Build.BuildId)'
-        valueFile: 'image.tag'
+        valueFile: 'swiggy-app/values.yaml'
         resetValues: true'
 
 
