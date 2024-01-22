@@ -18,7 +18,8 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+      f4yiee
+      # vmImage: ubuntu-latest
     steps:
     - task: Docker@2
       displayName: Build an image
