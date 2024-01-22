@@ -1,7 +1,7 @@
 replicaCount: 2
 
 image:
-  repository: abdulfayis/gkeapplication
+  repository: abdulfayis/swiggy-app
   tag: latest
   pullPolicy: IfNotPresent
 
