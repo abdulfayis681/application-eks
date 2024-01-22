@@ -53,5 +53,5 @@ stages:
       inputs:
         targetType: 'inline'
         script: 'docker rmi -f $(sudo docker images -q)'
-      displayName: 'Push the Docker image to Dockerhub'
+      displayName: 'Cleaning Docker images'
 
