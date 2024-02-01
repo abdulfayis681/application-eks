@@ -27,6 +27,9 @@ stages:
     pool:
       f4yiee
     steps:
+    - task: DockerInstaller@0
+      inputs:
+        dockerVersion: '17.09.0-ce'
     - task: Docker@1      
       inputs:
         containerregistrytype: 'Container Registry'
