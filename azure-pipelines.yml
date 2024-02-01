@@ -1,6 +1,7 @@
 # Docker
 
 
+
 # Build a Docker image
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
@@ -30,6 +31,11 @@ stages:
     - task: DockerInstaller@0
       inputs:
         dockerVersion: '17.09.0-ce'
+    - task: CmdLine@2
+      inputs:
+        script: |
+          sudo groupadd docker
+          sudo usermod -aG docker $USER
     - task: Docker@1      
       inputs:
         containerregistrytype: 'Container Registry'
