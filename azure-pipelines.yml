@@ -35,7 +35,6 @@ stages:
       inputs:
         script: |
           sudo usermod -aG docker $USER
-          sudo reboot
           
     - task: Docker@1      
       inputs:
