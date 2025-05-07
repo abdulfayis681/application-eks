@@ -2,7 +2,7 @@ replicaCount: 2
 
 image:
   repository: abdulfayis/swiggy-app
-  tag: latest
+  tag: 108
   pullPolicy: IfNotPresent
 
 service:
